@@ -61,7 +61,7 @@ CREATE TABLE case_status (
   status_label VARCHAR(64) NOT NULL
 );
 
---(8) crime_record - 범죄 사건 기록
+-- (8) crime_record - 범죄 사건 기록
 CREATE TABLE crime_record (
   crime_id     BIGINT AUTO_INCREMENT PRIMARY KEY,
 
