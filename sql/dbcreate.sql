@@ -28,6 +28,9 @@ CREATE TABLE weather (
     snow DECIMAL(5,2),
     snow_depth DECIMAL(5,2),
     weather_condition_id INT NOT NULL,
+   
+    INDEX idx_weather_condition (weather_condition_id),
+
     FOREIGN KEY (weather_condition_id) REFERENCES weathercondition(condition_id)
 );
 
@@ -39,6 +42,10 @@ CREATE TABLE data_logs (
     target_table VARCHAR(50) NOT NULL,
     target_id BIGINT,
     action_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    INDEX idx_log_admin (admin_id),
+    INDEX idx_log_date (action_timestamp),
+
     FOREIGN KEY (admin_id) REFERENCES admins(admin_id)
 );
 
