@@ -1,0 +1,125 @@
+body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', system-ui, sans-serif;
+            background-color: #F2F4F8;
+        }
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 1;
+            padding: 40px 60px 30px 60px;
+        }
+        h1 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            font-size: 28px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .card h2 {
+            margin: 0 0 12px;
+            font-size: 20px;
+        }
+
+        .filters-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .filter-group label {
+            font-size: 14px;
+            color: #21272A;
+        }
+        .filter-group-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .filter-group-row label {
+            font-size: 14px;
+            color: #21272A;
+        }
+
+        select, button {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 14px;
+        }
+        button {
+            padding: 6px 14px;
+            background: #0F62FE;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .category-checkboxes {
+            max-height: 96px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 6px 10px;
+            min-width: 280px;
+        }
+        .category-checkboxes label {
+            display: inline-block;
+            margin-right: 12px;
+            font-size: 12px;
+        }
+
+        .grid-table-chart {
+            display: grid;
+            grid-template-columns: 1.5fr 1.5fr;
+            gap: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #DDE1E6;
+            text-align: center;
+        }
+        th {
+            background: #F2F4F8;
+            font-weight: 600;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .card-row {
+            display: flex;
+            gap: 16px;
+            align-items: stretch;
+        }
+        .card-row .card {
+            margin-bottom: 0;
+        }
+        .card-row .card:nth-child(1) {
+            flex: 2.5;
+        }
+        .card-row .card:nth-child(2) {
+            flex: 1;
+        }
