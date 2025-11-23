@@ -23,12 +23,17 @@ fgetcsv($csvFile); // 2번째 줄 (컬럼명 Date, TAVG...) 건너뛰기
 
 echo "<h3>데이터 가져오기 시작...</h3>";
 $count = 0;
+$skipped_count = 0;
 
 // 3. 한 줄씩 읽어서 처리
 while (($row = fgetcsv($csvFile)) !== false) {
     // CSV 컬럼 순서에 맞춰 변수 할당 (이미지 기준)
     // Date(0), TAVG(1), TMAX(2), TMIN(3), PRCP(4), SNOW(5), SNWD(6)
     $date = $row[0];
+    if ($date < '2004-01-04' || $date > '2015-05-14') {
+        $skipped_count++;
+        continue; // 다음 반복으로 넘어감
+    }
     $tavg_raw = $row[1];
     $tmax = floatval($row[2]);
     $tmin = floatval($row[3]);
@@ -105,7 +110,7 @@ while (($row = fgetcsv($csvFile)) !== false) {
     }
     
     // 1000건마다 진행상황 출력 (화면 멈춤 방지)
-    if ($count % 1000 == 0) {
+    if ($count > 0 && $count % 1000 == 0) {
         echo ".";
         flush(); 
     }
@@ -114,5 +119,7 @@ while (($row = fgetcsv($csvFile)) !== false) {
 fclose($csvFile);
 $conn->close();
 
-echo "<h3>완료! 총 $count 건의 날씨 데이터가 저장되었습니다.</h3>";
+echo "<h3>완료!</h3>";
+echo "<p>저장된 데이터: <b>$count</b> 건 (2004-01-04 ~ 2015-05-14)</p>";
+echo "<p>제외된 데이터: $skipped_count 건</p>";
 ?>

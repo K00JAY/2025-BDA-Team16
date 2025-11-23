@@ -35,8 +35,8 @@ $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'
             <li class="sidebar__item <?= $current_page === 'ranking' ? 'active' : '' ?>">
                 <a href="ranking.php">범죄 유형 순위 분석</a>
             </li>
-            <li class="sidebar__item <?= $current_page === 'window_trend' ? 'active' : '' ?>">
-                <a href="window_trend.php">이동평균 추세 분석</a>
+            <li class="sidebar__item <?= $current_page === 'weekday_window' ? 'active' : '' ?>">
+                <a href="weekday_window.php">이동평균 추세 분석</a>
             </li>
         </ul>
 
