@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/config.php';
 ?>
-<?php include __DIR__ . '/includes/header.php'; ?>
 
 <h1>빅데이터응용 홈 화면</h1>
 
@@ -11,4 +10,3 @@ require_once __DIR__ . '/includes/config.php';
     <button>이동하기</button>
 </a>
 
-<?php include __DIR__ . '/includes/footer.php'; ?>
