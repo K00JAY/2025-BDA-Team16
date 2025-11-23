@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/config.php';
 ?>
-<?php include __DIR__ . '/includes/header.php'; ?>
 
 <?php
 session_start();
@@ -44,5 +43,7 @@ $isLoggedIn = isset($_SESSION['admin_id']);
     2025-2 빅데이터응용 팀 쿼리라이스
 </footer>
 
+
 </body>
 </html>
+

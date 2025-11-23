@@ -61,7 +61,11 @@ $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'
 
 
 .sidebar {
+    /* flex 컨테이너에서 사이드바 폭 고정 */
+    flex: 0 0 220px;        /* flex-grow:0, flex-shrink:0, 기본폭 220px */
     width: 220px;
+    flex-shrink: 0;         /* 혹시 모를 축소 방지 (중복이지만 안전용) */
+
     min-height: 100vh;
     background: #f5f7fb;
     border-right: 1px solid #dde1ea;
@@ -69,6 +73,7 @@ $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
+
 
 .sidebar__logo {
     font-size: 16px;
