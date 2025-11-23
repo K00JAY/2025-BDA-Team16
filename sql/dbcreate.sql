@@ -81,8 +81,7 @@ CREATE TABLE crime_record (
   year         INT      AS (YEAR(occurred_at)) STORED,
   month        TINYINT  AS (MONTH(occurred_at)) STORED,
   dow          TINYINT  AS (DAYOFWEEK(occurred_at)) STORED, -- 1=일 ~ 7=토
-  -- day_name     VARCHAR(10) AS (DAYNAME(occurred_at)) STORED,
-    day_name     VARCHAR(10),
+  day_name     VARCHAR(10) AS (DAYNAME(occurred_at)) STORED,
 
   -- FK 설정
   CONSTRAINT fk_crime_category FOREIGN KEY (category_id) REFERENCES crime_category(category_id),
