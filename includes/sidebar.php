@@ -10,7 +10,6 @@ if (!isset($current_page)) {
 }
 
 // 관리자 여부
-// TODO 로그인 기능 구현 후 해당 부분 연결 확인
 $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
 ?>
 

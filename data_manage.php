@@ -9,7 +9,6 @@ if (empty($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
     exit;
 }
 
-// FIXME 임시용 -> 나중에 실제 로그인 로직과 연결
 $admin_id = $_SESSION['admin_id'] ?? null;
 $admin_id = $admin_id !== null ? (int)$admin_id : null;
 
