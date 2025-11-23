@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/config.php';
 ?>
 
 <?php
-session_start();
+// session_start();
 $isLoggedIn = isset($_SESSION['admin_id']);
 ?>
 <!DOCTYPE html>
