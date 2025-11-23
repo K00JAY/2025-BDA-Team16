@@ -184,6 +184,7 @@ while ($row = $r->fetch_assoc()) {
 <title>날씨 기반 범죄 발생률 분석</title>
 <link rel="stylesheet" href="css/weather_stats.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/weather_stats.js" defer></script>
 </head>
 
 <body>
@@ -326,57 +327,13 @@ while ($row = $r->fetch_assoc()) {
 </div>
 
 <script>
-document.querySelectorAll('.tab-button').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-    });
-});
+window.tempLabelsData = <?= json_encode($tempLabels, JSON_UNESCAPED_UNICODE) ?>;
+window.tempRatesData  = <?= json_encode($tempRates) ?>;
 
-const tempLabels = <?= json_encode($tempLabels, JSON_UNESCAPED_UNICODE) ?>;
-const tempRates  = <?= json_encode($tempRates) ?>;
+window.rainLabelsData = <?= json_encode($rainLabels, JSON_UNESCAPED_UNICODE) ?>;
+window.rainRatesData  = <?= json_encode($rainRates) ?>;
 
-const rainLabels = <?= json_encode($rainLabels, JSON_UNESCAPED_UNICODE) ?>;
-const rainRates  = <?= json_encode($rainRates) ?>;
-
-const globalRate = <?= json_encode($global_rate) ?>;
-
-function makeChart(id, labels, rates) {
-    const ctx = document.getElementById(id);
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: "일일 발생률",
-                    data: rates,
-                    backgroundColor: "#2d6cdf"
-                },
-                {
-                    label: "전체 평균",
-                    data: new Array(labels.length).fill(globalRate),
-                    type: "line",
-                    borderColor: "#f97316",
-                    borderWidth: 2,
-                    tension: 0.2
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: { beginAtZero: true }
-            }
-        }
-    });
-}
-
-makeChart("tempChart", tempLabels, tempRates);
-makeChart("rainChart", rainLabels, rainRates);
+window.globalRateData = <?= json_encode($global_rate) ?>;
 </script>
 
 </body>
