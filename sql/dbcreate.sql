@@ -88,7 +88,7 @@ CREATE TABLE crime_record (
   year         INT      AS (YEAR(occurred_at)) STORED,
   month        TINYINT  AS (MONTH(occurred_at)) STORED,
   dow          TINYINT  AS (DAYOFWEEK(occurred_at)) STORED, -- 1=일 ~ 7=토
-  day_name     VARCHAR(10) AS (DAYNAME(occurred_at)) STORED,
+  day_name VARCHAR(10) AS (DAYNAME(occurred_at)) VIRTUAL,
 
   -- FK 설정
   CONSTRAINT fk_crime_category FOREIGN KEY (category_id) REFERENCES crime_category(category_id),
@@ -97,8 +97,10 @@ CREATE TABLE crime_record (
 
   -- 인덱스
   KEY idx_crime_date (report_date),
-  KEY idx_crime_year_month (year, month),
+  KEY idx_year_category (category_id),
   KEY idx_crime_cat_date (category_id, report_date),
-  KEY idx_crime_precinct (precinct_id),
-  KEY idx_crime_status (status_id)
+  KEY idx_crime_year_month (year, month),
+  KEY idx_year_category (year, category_id),
+  KEY idx_crime_dow (dow),
+  KEY idx_crime_year (year)
 );
