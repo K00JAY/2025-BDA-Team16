@@ -25,7 +25,7 @@ if (isset($_SESSION['admin_id'])) {
         <div class="login-title">관리자 로그인</div>
         <div class="login-desc">범죄 데이터 분석 시스템 관리자 전용</div>
 
-        <form action="login_process.php" method="POST">
+        <form action="login_process.php" method="POST" autocomplete="off">
 
             <div class="input-label">사용자명</div>
             <input type="text" name="username" class="input-field" placeholder="사용자명을 입력하세요" required />
