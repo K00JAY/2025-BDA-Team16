@@ -3,7 +3,6 @@ require_once __DIR__ . '/includes/config.php';
 ?>
 
 <?php
-// session_start();
 $isLoggedIn = isset($_SESSION['admin_id']);
 ?>
 <!DOCTYPE html>
@@ -27,7 +26,7 @@ $isLoggedIn = isset($_SESSION['admin_id']);
 
 <!-- 메인 영역 -->
 <div class="main-container">
-    <div class="blob"></div>
+    <img src="assets/weather-icon.png" alt="Weather Icon" class="weather-icon"/>
 
     <div class="main-content">
         <div class="subtitle">빅데이터 분석 시뮬레이션 프로젝트</div>

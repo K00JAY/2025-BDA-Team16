@@ -22,12 +22,10 @@
   padding: 80px 50px;
 }
 
-.blob {
-  width: 300px;
+.weather-icon {
+  width: 340px;
   height: 380px;
-  background: var(--color-gray-light);
-  border-radius: 65% 35% 60% 40%;
-  margin-right: 70px;
+  object-fit: contain;
 }
 
 .subtitle {
