@@ -12,6 +12,7 @@ if (isset($_SESSION['admin_id'])) {
 <head>
     <meta charset="UTF-8" />
     <title>관리자 로그인</title>
+    <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/login.css" />
 </head>
 <body>

@@ -1,26 +1,14 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background: #f5f7fb;
-  color: #1f2937;
-}
-
 .navbar {
   width: 100%;
   padding: 20px 50px;
   display: flex;
   justify-content: flex-end;
-  background: #ffffff;
+  background: var(--color-white);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .login-btn {
-  color: #1e3a8a;
+  color: var(--color-primary-dark);
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;
@@ -37,13 +25,13 @@ body {
 .blob {
   width: 300px;
   height: 380px;
-  background: #e5e7eb;
+  background: var(--color-gray-light);
   border-radius: 65% 35% 60% 40%;
   margin-right: 70px;
 }
 
 .subtitle {
-  color: #1e3a8a;
+  color: var(--color-primary-dark);
   font-size: 15px;
   margin-bottom: 8px;
 }
@@ -58,29 +46,25 @@ body {
 .description {
   font-size: 15px;
   line-height: 1.6;
-  color: #6b7280;
+  color: var(--color-gray-dark);
   margin-bottom: 28px;
 }
 
 .btn-primary {
   padding: 13px 24px;
-  background: #2563eb;
+  background: var(--color-primary);
   color: white;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
 }
 
-.btn-primary:hover {
-  background: #1d4ed8;
-}
-
 .footer {
   width: 100%;
   text-align: center;
   padding: 18px 0;
-  background: #697077;
-  color: #e5e7eb;
+  background: var(--color-gray-dark);
+  color: var(--color-gray-light);
   font-size: 13px;
   position: fixed;
   left: 0;

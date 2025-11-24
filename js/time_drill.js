@@ -77,8 +77,8 @@
                         yAxisID: 'y',
                         type: crimeType,
                         borderWidth: 2,
-                        backgroundColor: 'rgba(37, 99, 235, 0.7)',
-                        borderColor: 'rgba(37, 99, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
                     },
                     {
                         label: '평균 강수량 (mm)',

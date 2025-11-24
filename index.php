@@ -11,6 +11,7 @@ $isLoggedIn = isset($_SESSION['admin_id']);
 <head>
     <meta charset="UTF-8" />
     <title>날씨와 범죄의 상관관계 분석</title>
+    <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>

@@ -33,13 +33,11 @@ function makeChart(id, labels, rates) {
         {
           label: '일일 발생률',
           data: rates,
-          backgroundColor: '#2d6cdf',
         },
         {
           label: '전체 평균',
           data: new Array(labels.length).fill(globalRate),
           type: 'line',
-          borderColor: '#f97316',
           borderWidth: 2,
           tension: 0.2,
         },

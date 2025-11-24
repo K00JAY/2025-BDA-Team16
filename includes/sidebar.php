@@ -66,7 +66,7 @@ $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'
     flex-shrink: 0;         /* 혹시 모를 축소 방지 (중복이지만 안전용) */
 
     min-height: 100vh;
-    background: #f5f7fb;
+    background: #ffffff;
     border-right: 1px solid #dde1ea;
     padding: 20px 16px;
     box-sizing: border-box;
@@ -100,7 +100,7 @@ $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'
 }
 
 .sidebar__item.active a {
-    background: #2d6cdf;
+    background:  var(--color-primary);
     color: white;
     font-weight: 600;
 }
@@ -114,7 +114,7 @@ $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'
 .sidebar__section--admin .sidebar__label {
     font-size: 12px;
     color: #888;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -130,7 +130,7 @@ $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'
     margin-top: 6px;
     font-size: 13px;
     text-decoration: none;
-    color: #2d6cdf;
+    color:  var(--color-primary);
 }
 
 .sidebar__user {

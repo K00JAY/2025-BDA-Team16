@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>날짜 단계별 분석</title>
+    <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/time_drill.css">
 </head>
 
@@ -108,8 +109,8 @@
                 <!-- 버튼 영역 -->
                 <div class="filter-actions">
                     <button type="button" class="btn btn-secondary"
-                            onclick="location.href='time_drill.php';">초기화</button>
-                    <button type="submit" class="btn btn-primary">조회</button>
+                            onclick="location.href='time_drill.php';">초기화하기</button>
+                    <button type="submit" class="btn btn-primary">적용하기</button>
                 </div>
             </form>
         </section>
