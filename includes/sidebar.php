@@ -9,6 +9,9 @@ if (!isset($current_page)) {
     $current_page = '';
 }
 
+// 로그인 여부
+$logged_in = isset($_SESSION['admin_id']);
+
 // 관리자 여부
 $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
 ?>
@@ -16,12 +19,21 @@ $is_admin = !empty($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'
 <aside class="sidebar">
 
     <div class="sidebar__top">
-        <a href="login.php" class="sidebar__user-icon">
-            <!-- 사람 아이콘 (SVG) -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#2d6cdf" viewBox="0 0 24 24">
-                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
-            </svg>
+        <?php if ($logged_in): ?>
+            <!-- 로그인 되어 있을 경우 LOGOUT 아이콘 -->
+            <a href="logout_process.php" class="sidebar__user-icon" title="Logout">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#2d6cdf" viewBox="0 0 24 24">
+                    <path d="M16 17v-2h-4v-2h4v-2l4 3-4 3zm-2-12h-8v14h8v2h-10v-18h10v2z"/>
+                </svg>
         </a>
+        <?php else: ?>
+            <!-- 로그인 안 되어 있을 경우 LOGIN 아이콘 -->
+            <a href="login.php" class="sidebar__user-icon" title="Login">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#2d6cdf" viewBox="0 0 24 24">
+                    <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+                </svg>
+            </a>
+        <?php endif; ?>
     </div>
     <nav class="sidebar__nav">
         <ul class="sidebar__section">
