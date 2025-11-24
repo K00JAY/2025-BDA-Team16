@@ -21,6 +21,7 @@ $admin = $result->fetch_assoc();
 if ($admin && password_verify($password, $admin["password_hash"])) {
 
     // 세션 저장
+    $_SESSION['user_role'] = 'admin';
     $_SESSION["admin_id"] = $admin["admin_id"];
     $_SESSION["admin_username"] = $admin["username"];
 

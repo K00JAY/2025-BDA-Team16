@@ -10,17 +10,19 @@ $db_user = 'team16';
 $db_pass = 'team16';
 $db_name = 'team16';
 
-// $mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name);
+$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-// if ($mysqli->connect_errno) {
-//     die('[ERROR] DB 연결 실패: ' . $mysqli->connect_error);
-// }
+if ($mysqli->connect_errno) {
+    die('[ERROR] DB 연결 실패: ' . $mysqli->connect_error);
+}
 
 
-// 사이드바 UI 테스트용 (관리자 로그인 활성화)
+// 개발용 (관리자 로그인 활성화)
 // if (!isset($_SESSION['user_role'])) {
 //     $_SESSION['user_role'] = 'admin';
-//     $_SESSION['admin_id']  = 'test_admin';
+//     $_SESSION['admin_id']  =1;
+//     $_SESSION['admin_name']  ='team16';
+
 // }
 // 세션 초기화용 (현재 로그인/로그아웃 기능이 없어서..! 테스트용으로!)
 // session_start();
