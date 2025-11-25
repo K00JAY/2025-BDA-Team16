@@ -182,6 +182,7 @@ while ($row = $r->fetch_assoc()) {
 <head>
 <meta charset="UTF-8">
 <title>날씨 기반 범죄 발생률 분석</title>
+<link rel="stylesheet" href="css/global.css" />
 <link rel="stylesheet" href="css/weather_stats.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/weather_stats.js" defer></script>
@@ -197,7 +198,8 @@ while ($row = $r->fetch_assoc()) {
 <h1>날씨 기반 범죄 발생률 분석</h1>
 
 <!-- 월 필터 -->
-<form method="GET" class="filter-box">
+<form method="GET">
+    <div class="filter-box">
     <label>월 선택</label>
     <select name="month">
         <option value="ALL">전체 기간</option>
@@ -207,7 +209,8 @@ while ($row = $r->fetch_assoc()) {
         </option>
         <?php endforeach; ?>
     </select>
-    <button type="submit">적용</button>
+    <button type="submit" class="btn btn-primary">적용하기</button>
+    </div>
 </form>
 
 <!-- 전체 요약 -->
@@ -224,6 +227,7 @@ while ($row = $r->fetch_assoc()) {
 
 <!-- 기온 분석 -->
 <section id="tab-temp" class="tab-panel active">
+<div class="white-box">
 <h2>기온 기반 범죄 발생률 분석</h2>
 <table>
 <tr>
@@ -251,12 +255,14 @@ while ($row = $r->fetch_assoc()) {
 </tr>
 <?php endforeach; ?>
 </table>
+</div>
 
 <div class="chart-wrapper"><canvas id="tempChart"></canvas></div>
 </section>
 
 <!-- 강수량 분석 -->
 <section id="tab-rain" class="tab-panel">
+<div class="white-box">
 <h2>강수량 기반 범죄 발생률 분석</h2>
 <table>
 <tr>
@@ -284,12 +290,14 @@ while ($row = $r->fetch_assoc()) {
 </tr>
 <?php endforeach; ?>
 </table>
+</div>
 
 <div class="chart-wrapper"><canvas id="rainChart"></canvas></div>
 </section>
 
 <!-- 교차 분석 -->
 <section id="tab-cross" class="tab-panel">
+    <div class="white-box">
 <h2>기온 X 강수량 교차 분석</h2>
 
 <table>
@@ -320,7 +328,7 @@ while ($row = $r->fetch_assoc()) {
 </tr>
 <?php endforeach; ?>
 </table>
-
+</div>
 </section>
 
 </main>

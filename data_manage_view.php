@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>데이터 관리</title>
+    <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/data_manage.css">
 </head>
 <body>
@@ -20,8 +21,8 @@
         <?php endif; ?>
 
         <!-- 상단 필터 -->
-        <h2 class="section-title">데이터 필터 조건 설정</h2>
         <section class="filter-panel">
+            <h2>데이터 필터 조건 설정</h2>
             <form method="get">
                 <!--  데이터 유형 + 기간 -->
                 <div class="filter-row">
@@ -108,8 +109,8 @@
 
                 <!-- 하단 버튼 -->
                 <div class="filter-actions-bottom">
-                    <button type="reset" class="btn btn-secondary">초기화</button>
-                    <button type="submit" class="btn btn-primary">필터 적용</button>
+                    <button type="reset" class="btn btn-secondary">초기화하기</button>
+                    <button type="submit" class="btn btn-primary">적용하기</button>
                 </div>
             </form>
         </section>
@@ -117,10 +118,10 @@
         <!-- 좌: 그리드 / 우: 편집 -->
         <div class="main-panels">
             <div>
-                <h2 class="section-title">
-                    <?= $data_type === 'crime' ? '범죄 원본 데이터' : '날씨 원본 데이터' ?>
-                </h2>
                 <div class="card card--list">
+                    <h2>
+                        <?= $data_type === 'crime' ? '범죄 원본 데이터' : '날씨 원본 데이터' ?>
+                    </h2>
                     <div class="table-wrapper">
                         <table>
                             <thead>
@@ -253,8 +254,8 @@
             </div>
 
             <div>
-                <h2 class="section-title">선택 데이터 수정 / 삭제</h2>
                 <div class="card">
+                    <h2>선택 데이터 수정 / 삭제</h2>
                     <?php if ($data_type === 'crime'): ?>
                         <form method="post" id="crimeForm">
                             <input type="hidden" name="data_type" value="crime">

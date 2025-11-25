@@ -1,0 +1,69 @@
+:root {
+  --color-background: #f2f4f8;
+  --color-primary: #0f62fe;
+  --color-primary-dark: #001d6c;
+
+  --color-text-dark: #21272a;
+
+  --color-gray-light: #e5e7eb;
+  --color-gray-dark: #6b7280;
+
+  --color-white: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', system-ui, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-dark);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0 0 24px;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.btn {
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background: var(--color-gray-light);
+  color: #111827;
+}
+
+.btn-secondary:hover {
+  background-color: #d0d0d0;
+}

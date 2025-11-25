@@ -1,4 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="css/global.css" />
 <link rel="stylesheet" href="css/ranking.css">
 <div class="layout">
 
@@ -9,8 +10,11 @@
     <main class="content">
         <h1>범죄 유형 순위 분석</h1>
         
-        <h2>순위 분석 필터 조건 설정</h2>
         <div class="white-box">
+            <h2>순위 분석 필터 조건 설정</h2>
+
+            <hr class="divider">
+
             <form method="POST" action="ranking.php">
                 
                 <div class="filter-row">
@@ -98,17 +102,20 @@
                 </div>
 
                 <div class="filter-actions">
-                    <a href="ranking.php" class="btn btn-reset">초기화하기</a>
+                    <a href="ranking.php" class="btn btn-secondary">초기화하기</a>
                     
-                    <button type="submit" class="btn btn-apply">적용하기</button>
+                    <button type="submit" class="btn btn-primary">적용하기</button>
                 </div>
             </form>
         </div>
 
-        <h2>
-            <?php echo $is_analyzed ? '순위 분석 결과' : '*범죄 유형 설명'; ?>
-        </h2>
         <div class="white-box">
+            <h2>
+                <?php echo $is_analyzed ? '순위 분석 결과' : '*범죄 유형 설명'; ?>
+            </h2>
+
+            <hr class="divider">
+            
             <?php if ($is_analyzed): ?>
                 <div class="result-view">
                     <div style="display: flex; gap: 30px; align-items: flex-start;">

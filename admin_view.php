@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>관리자 화면 - 작업 로그</title>
+    <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
@@ -54,7 +55,7 @@
 
                     <div class="filter-actions">
                         <button type="button" class="btn btn-secondary" id="resetFilterBtn">
-                            초기화
+                            초기화하기
                         </button>
                         <button type="submit" class="btn btn-primary">적용하기</button>
                     </div>

@@ -1,150 +1,122 @@
 .layout {
-    display: flex;
+  display: flex;
+  min-height: 100vh;
 }
 
 .content {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #F0F2F5;
+  flex: 1;
+  padding: 30px;
 }
 
 .white-box {
-    background-color: #ffffff;  
-    padding: 20px;             
-    border-radius: 10px;       
-    border: 1px solid #ddd;     
+  background-color: var(--color-white);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
 }
 
 /* 필터 박스 내부 레이아웃 */
 .filter-row {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
 }
 
-/* 왼쪽 제목 (1️⃣ 날씨 조건...) */
+/* 왼쪽 제목 */
 .filter-title {
-    width: 180px; /* 제목 너비 고정 */
-    font-weight: bold;
-    font-size: 15px;
-    color: #333;
-    flex-shrink: 0; /* 줄어들지 않게 고정 */
+  width: 180px; /* 제목 너비 고정 */
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+  flex-shrink: 0; /* 줄어들지 않게 고정 */
 }
 
 /* 오른쪽 옵션 영역 */
 .filter-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px; /* 그룹 간 간격 */
-    flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; /* 그룹 간 간격 */
+  flex-grow: 1;
 }
 
 .option-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* 라벨 텍스트 (날씨 상태:, 기온: 등) */
+/* 라벨 텍스트 */
 .label-text {
-    font-weight: 600;
-    color: #555;
-    font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
 }
 
 /* 체크박스 스타일 (다중 선택) */
-.checkbox-container { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 15px; 
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.checkbox-item { 
-    display: flex;
-    align-items: center; 
-    gap: 5px; 
-    font-size: 14px; 
-    cursor: pointer; 
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.checkbox-item input { 
-    cursor: pointer; 
+.checkbox-item input {
+  cursor: pointer;
 }
 
 /* 드롭다운 스타일 */
 .form-select {
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    outline: none;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
 }
 
 /* 라디오 버튼 스타일 */
 .radio-item {
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* 구분선 */
 .divider {
-    border: 0;
-    border-top: 1px dashed #eee;
-    margin: 5px 0;
+  border: 0;
+  border-top: 1px dashed #eee;
+  margin: 5px 0;
 }
 
 .filter-actions {
-    display: flex;
-    justify-content: flex-end; /* 오른쪽 정렬 */
-    gap: 10px; /* 버튼 사이 간격 */
-}
-
-.btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none; /* a 태그 밑줄 제거 */
-    display: inline-block;
-    border: none;
-}
-
-/* 초기화 버튼 (회색) */
-.btn-reset {
-    background-color: #e0e0e0;
-    color: #333;
-}
-.btn-reset:hover {
-    background-color: #d0d0d0;
-}
-
-/* 적용하기 버튼 (파란색) */
-.btn-apply {
-    background-color: #007bff;
-    color: white;
-}
-.btn-apply:hover {
-    background-color: #0056b3;
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  gap: 10px; /* 버튼 사이 간격 */
 }
 
 /* 결과 테이블 스타일 */
 .result-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
-.result-table th, .result-table td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
+.result-table th,
+.result-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
 }
 .result-table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-    color: #555;
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #555;
 }

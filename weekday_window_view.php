@@ -30,8 +30,9 @@ foreach ($weekdayCount as $wc) {
 <head>
     <meta charset="UTF-8">
     <title>요일별 연도 추세</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/weekday_window.css" >
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="css/weekday_window.css" rel="stylesheet">
 </head>
 <body>
 <div class="layout">
@@ -95,11 +96,9 @@ foreach ($weekdayCount as $wc) {
                         </div>
                     </div>
 
-                    <div class="filter-group">
-                        <div>
-                            <button type="submit">적용하기</button>
-                            <a href="weekday_window.php" style="margin-left:8px; font-size:14px; color: #8A8585">초기화하기</a>
-                        </div>
+                    <div class="filter-button-group">
+                        <a href="weekday_window.php" class="btn btn-secondary">초기화하기</a>
+                        <button type="submit" class="btn btn-primary">적용하기</button>
                     </div>
 
                 </div>
