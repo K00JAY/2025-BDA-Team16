@@ -100,7 +100,5 @@ CREATE TABLE crime_record (
   KEY idx_year_category (category_id),
   KEY idx_crime_cat_date (category_id, report_date),
   KEY idx_crime_year_month (year, month),
-  KEY idx_year_category (year, category_id),
-  KEY idx_crime_dow (dow),
-  KEY idx_crime_year (year)
+  KEY idx_year_category (year, category_id)
 );
