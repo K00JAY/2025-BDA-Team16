@@ -62,7 +62,7 @@ foreach ($weekdayCount as $wc) {
                     <div class="filter-group-row">
                         <label>시작 연도</label>
                         <select name="start_year">
-                            <?php for ($y = 2004; $y <= 2014; $y++): ?>
+                            <?php for ($y = 2008; $y <= 2014; $y++): ?>
                                 <option value="<?= $y ?>" <?= ($y === $startYear ? 'selected' : '') ?>>
                                     <?= $y ?>년
                                 </option>
@@ -73,7 +73,7 @@ foreach ($weekdayCount as $wc) {
                     <div class="filter-group-row">
                         <label>종료 연도</label>
                         <select name="end_year">
-                            <?php for ($y = 2004; $y <= 2014; $y++): ?>
+                            <?php for ($y = 2008; $y <= 2014; $y++): ?>
                                 <option value="<?= $y ?>" <?= ($y === $endYear ? 'selected' : '') ?>>
                                     <?= $y ?>년
                                 </option>
