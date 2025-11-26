@@ -34,7 +34,7 @@ CREATE TABLE weather (
     FOREIGN KEY (weather_condition_id) REFERENCES weathercondition(condition_id)
 );
 
--- (4) data_logs - 데이터 관리 로그 기록
+-- (4) data_logs - 관리자 작업 로그
 CREATE TABLE data_logs (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
     admin_id INT NOT NULL,
