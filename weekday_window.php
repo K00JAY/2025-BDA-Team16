@@ -55,9 +55,8 @@ $dowKorean = [
 $sql = "
 WITH yearly_weekday AS (
     SELECT
-        YEAR(report_date) AS yr,
+        year,
         dow,
-        day_name,
         COUNT(*) AS crimes
     FROM crime_record
     WHERE report_date BETWEEN ? AND ?
@@ -76,7 +75,7 @@ if (!empty($selectedCategories)) {
 }
 
 $sql .= "
-    GROUP BY YEAR(report_date), dow, day_name
+    GROUP BY year, dow
 )
 ";
 
@@ -85,18 +84,17 @@ $sql .= "
 if ($selectedDow > 0) {
     $sql .= "
 SELECT
-    yr,
+    year,
     dow,
-    day_name,
     crimes,
     AVG(crimes) OVER (
         PARTITION BY dow
-        ORDER BY yr
+        ORDER BY year
         ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING
     ) AS moving_avg_3yr
 FROM yearly_weekday
 WHERE dow = ?
-ORDER BY yr
+ORDER BY year
 ";
     $types   .= 'i';
     $params[] = $selectedDow;
@@ -105,20 +103,20 @@ ORDER BY yr
     // 요일 구분 없이 연도별 합계
     $sql .= "
 SELECT
-    yr,
+    year,
     crimes_total AS crimes,
     AVG(crimes_total) OVER (
-        ORDER BY yr
+        ORDER BY year
         ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING
     ) AS moving_avg_3yr
 FROM (
     SELECT
-        yr,
+        year,
         SUM(crimes) AS crimes_total
     FROM yearly_weekday
-    GROUP BY yr
+    GROUP BY year
 ) AS yearly_total
-ORDER BY yr
+ORDER BY year
 ";
 }
 
@@ -148,7 +146,7 @@ if ($stmt = mysqli_prepare($mysqli, $sql)) {
 $sql2 = "
     SELECT
         dow,
-        day_name,
+        MIN(day_name) AS day_name,
         COUNT(*) AS total_crimes
     FROM crime_record
     WHERE report_date BETWEEN ? AND ?
@@ -167,7 +165,7 @@ if (!empty($selectedCategories)) {
     }
 }
 
-$sql2 .= " GROUP BY dow, day_name ORDER BY dow ";
+$sql2 .= " GROUP BY dow ORDER BY dow ";
 
 // 실행
 if($stmt2 = mysqli_prepare($mysqli, $sql2)){
@@ -196,7 +194,7 @@ $chartCrimes = [];    // 해당 요일 연도별 건수
 $chartMoving = [];    // 3년 이동평균
 
 foreach ($dataRows as $row) {
-    $chartLabels[] = (int)$row['yr'];
+    $chartLabels[] = (int)$row['year'];
     $chartCrimes[] = (int)$row['crimes'];
     $chartMoving[] = isset($row['moving_avg_3yr']) ? (float)$row['moving_avg_3yr'] : null;
 }
