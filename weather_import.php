@@ -30,7 +30,7 @@ while (($row = fgetcsv($csvFile)) !== false) {
     // CSV 컬럼 순서에 맞춰 변수 할당 (이미지 기준)
     // Date(0), TAVG(1), TMAX(2), TMIN(3), PRCP(4), SNOW(5), SNWD(6)
     $date = $row[0];
-    if ($date < '2004-01-04' || $date > '2015-05-14') {
+    if ($date < '2008-01-01' || $date > '2014-12-31') {
         $skipped_count++;
         continue; // 다음 반복으로 넘어감
     }
