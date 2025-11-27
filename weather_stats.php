@@ -42,6 +42,16 @@ function q($mysqli, $sql, $params = []) {
     return $stmt->get_result();
 }
 
+function mapRainLabel($condition_name, $precip) {
+    if (!$precip || !$condition_name) return "Unknown";
+
+    if ($precip === "None") return "Clear";
+    if (str_starts_with($precip, "Light")) return "Light Rain";
+    if (str_starts_with($precip, "Heavy")) return "Heavy Rain";
+
+    return $condition_name;
+}
+
 // 전체 평균 발생률 계산 (선택된 기간 기준)
 $sql_global = "
 SELECT
@@ -81,7 +91,15 @@ LEFT JOIN (
 WHERE w.record_date BETWEEN ? AND ?
   AND wc.temp_range IS NOT NULL
 GROUP BY wc.temp_range
-ORDER BY wc.temp_range
+ORDER BY
+    CASE wc.temp_range
+        WHEN 'Hot (>80F)' THEN 4
+        WHEN 'Warm (60-80F)' THEN 3
+        WHEN 'Mild (40-60F)' THEN 2
+        WHEN 'Cold (<40F)' THEN 1
+        ELSE 0
+    END DESC
+
 ";
 
 $tempRows = [];
@@ -103,11 +121,8 @@ while ($row = $r->fetch_assoc()) {
 // 2) 강수량 기반 단일 분석
 $sql_rain = "
 SELECT
-    CASE
-        WHEN w.precipitation = 0 THEN 'Clear'
-        WHEN w.precipitation <= 2.5 THEN 'Light Rain'
-        ELSE 'Heavy Rain'
-    END AS rain_group,
+    wc.condition_name,
+    wc.precipitation_level,
     COUNT(DISTINCT w.record_date) AS weather_days,
     COALESCE(SUM(d.crimes),0) AS total_crimes,
     ROUND(AVG(d.crimes),2) AS avg_daily,
@@ -115,14 +130,22 @@ SELECT
     MIN(d.crimes) AS min_daily,
     ROUND(COALESCE(SUM(d.crimes),0)/COUNT(DISTINCT w.record_date),2) AS rate_per_day
 FROM weather w
+JOIN weathercondition wc
+    ON wc.condition_id = w.weather_condition_id
 LEFT JOIN (
     SELECT report_date, COUNT(*) AS crimes
     FROM crime_record
     GROUP BY report_date
 ) d ON d.report_date = w.record_date
 WHERE w.record_date BETWEEN ? AND ?
-GROUP BY rain_group
-ORDER BY rate_per_day DESC
+GROUP BY wc.condition_name, wc.precipitation_level
+ORDER BY
+    CASE
+        WHEN wc.precipitation_level LIKE 'Heavy%' THEN 3
+        WHEN wc.precipitation_level LIKE 'Light%' THEN 2
+        WHEN wc.precipitation_level = 'None' THEN 1
+        ELSE 0
+    END DESC;
 ";
 
 $rainRows = [];
@@ -131,6 +154,7 @@ $rainRates  = [];
 
 $r = q($mysqli, $sql_rain, [$monthStart, $monthEnd]);
 while ($row = $r->fetch_assoc()) {
+    $row['rain_group'] = mapRainLabel($row['condition_name'], $row['precipitation_level']);
     $row['diff_percent'] =
         $global_rate > 0 ? round(($row['rate_per_day'] - $global_rate) / $global_rate * 100, 1) : 0;
 
@@ -143,17 +167,14 @@ while ($row = $r->fetch_assoc()) {
 $sql_cross = "
 SELECT
     wc.temp_range,
-    CASE
-        WHEN w.precipitation = 0 THEN 'Clear'
-        WHEN w.precipitation <= 2.5 THEN 'Light Rain'
-        ELSE 'Heavy Rain'
-    END AS rain_group,
+    wc.condition_name,
+    wc.precipitation_level,
     COUNT(DISTINCT w.record_date) AS weather_days,
-    SUM(d.crimes) AS total_crimes,
+    COALESCE(SUM(d.crimes),0) AS total_crimes,
     ROUND(AVG(d.crimes),2) AS avg_daily_crimes,
     MAX(d.crimes) AS max_daily_crimes,
     MIN(d.crimes) AS min_daily_crimes,
-    ROUND(SUM(d.crimes) / COUNT(DISTINCT w.record_date), 2) AS rate_per_day
+    ROUND(COALESCE(SUM(d.crimes),0) / COUNT(DISTINCT w.record_date), 2) AS rate_per_day
 FROM weather w
 JOIN weathercondition wc
     ON wc.condition_id = w.weather_condition_id
@@ -163,13 +184,27 @@ LEFT JOIN (
     GROUP BY report_date
 ) d ON d.report_date = w.record_date
 WHERE w.record_date BETWEEN ? AND ?
-GROUP BY wc.temp_range, rain_group
-ORDER BY wc.temp_range, rain_group
+GROUP BY wc.temp_range, wc.condition_name, wc.precipitation_level
+ORDER BY
+    CASE wc.temp_range
+        WHEN 'Hot (>80F)' THEN 4
+        WHEN 'Warm (60-80F)' THEN 3
+        WHEN 'Mild (40-60F)' THEN 2
+        WHEN 'Cold (<40F)' THEN 1
+        ELSE 0
+    END DESC,
+    CASE
+        WHEN wc.precipitation_level LIKE 'Heavy%' THEN 3
+        WHEN wc.precipitation_level LIKE 'Light%' THEN 2
+        WHEN wc.precipitation_level = 'None' THEN 1
+        ELSE 0
+    END DESC;
 ";
 
 $crossRows = [];
 $r = q($mysqli, $sql_cross, [$monthStart, $monthEnd]);
 while ($row = $r->fetch_assoc()) {
+    $row['rain_group'] = mapRainLabel($row['condition_name'], $row['precipitation_level']);
     $row['diff_percent'] =
         $global_rate > 0 ? round(($row['rate_per_day'] - $global_rate) / $global_rate * 100, 1) : 0;
 

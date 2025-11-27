@@ -96,11 +96,10 @@ CREATE TABLE crime_record (
   CONSTRAINT fk_crime_status   FOREIGN KEY (status_id)   REFERENCES case_status(status_id),
 
   -- 인덱스
-  KEY idx_crime_date (report_date),
-  KEY idx_year_category (category_id),
-  KEY idx_crime_cat_date (category_id, report_date),
-  KEY idx_crime_year_month (year, month),
-  KEY idx_year_category (year, category_id),
-  KEY idx_crime_dow (dow),
-  KEY idx_crime_year (year)
+  KEY idx_crime_report_date_cat (report_date, category_id),
+  KEY idx_crime_year_dow (year, dow),
+  KEY idx_crime_year_month_cat (year, month, category_id),
+  KEY idx_crime_occurred (occurred_at),
+  KEY idx_crime_precinct (precinct_id),
+  KEY idx_crime_status (status_id)
 );

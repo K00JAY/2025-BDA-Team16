@@ -29,7 +29,7 @@ foreach ($weekdayCount as $wc) {
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>요일별 연도 추세</title>
+    <title>요일 기반 범죄 분석</title>
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/weekday_window.css" >
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -39,7 +39,7 @@ foreach ($weekdayCount as $wc) {
     <?php include __DIR__ . '/includes/sidebar.php'; ?>
     
     <main class="content">
-        <h1>요일별 연도 추세</h1>
+        <h1>요일 기반 범죄 분석</h1>
 
         <!-- 필터 -->
         <section class="card">
@@ -62,7 +62,7 @@ foreach ($weekdayCount as $wc) {
                     <div class="filter-group-row">
                         <label>시작 연도</label>
                         <select name="start_year">
-                            <?php for ($y = 2004; $y <= 2014; $y++): ?>
+                            <?php for ($y = 2008; $y <= 2014; $y++): ?>
                                 <option value="<?= $y ?>" <?= ($y === $startYear ? 'selected' : '') ?>>
                                     <?= $y ?>년
                                 </option>
@@ -73,7 +73,7 @@ foreach ($weekdayCount as $wc) {
                     <div class="filter-group-row">
                         <label>종료 연도</label>
                         <select name="end_year">
-                            <?php for ($y = 2004; $y <= 2014; $y++): ?>
+                            <?php for ($y = 2008; $y <= 2014; $y++): ?>
                                 <option value="<?= $y ?>" <?= ($y === $endYear ? 'selected' : '') ?>>
                                     <?= $y ?>년
                                 </option>
@@ -108,7 +108,9 @@ foreach ($weekdayCount as $wc) {
         <div class="card-row" style="margin-bottom:24px;">
             <!-- 연도별 추세 + 이동평균 -->
             <section class="card">
-                <h2>연도별 범죄 추세 (선택 요일)</h2>
+                <h2>
+                    연도별 범죄 추세 (<?= $selectedDow === 0 ? '전체 요일' : $dowKorean[$selectedDow] ?>)
+                </h2>
                 <p class="note">
                     선택한 요일과 연도 범위 및 범죄 유형 기준으로, 범죄 건수를 비교합니다.
                 </p>
@@ -126,7 +128,7 @@ foreach ($weekdayCount as $wc) {
                             <tbody>
                                 <?php foreach ($rows as $r): ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($r['yr']) ?></td>
+                                        <td><?= htmlspecialchars($r['year']) ?></td>
                                         <td><?= number_format($r['crimes']) ?></td>
                                         <td>
                                             <?= $r['moving_avg_3yr'] !== null
