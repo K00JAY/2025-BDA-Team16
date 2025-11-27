@@ -336,14 +336,20 @@ if ($data_type === 'crime') {
     }
 
     // 3-1. 전체 개수 조회
+    // $sql_count = "
+    //     SELECT COUNT(*) AS total
+    //     FROM crime_record c
+    //     JOIN crime_category cat ON c.category_id = cat.category_id
+    //     LEFT JOIN precinct p ON c.precinct_id = p.precinct_id
+    //     LEFT JOIN case_status s ON c.status_id = s.status_id
+    //     $where
+    // ";
     $sql_count = "
-        SELECT COUNT(*) AS total
-        FROM crime_record c
-        JOIN crime_category cat ON c.category_id = cat.category_id
-        LEFT JOIN precinct p ON c.precinct_id = p.precinct_id
-        LEFT JOIN case_status s ON c.status_id = s.status_id
-        $where
+    SELECT COUNT(*) AS total
+    FROM crime_record c
+    $where
     ";
+
     $stmt = $mysqli->prepare($sql_count);
     if (!empty($params)) {
         $stmt->bind_param($types, ...$params);
@@ -410,11 +416,16 @@ if ($data_type === 'crime') {
     }
 
     // 3-1. 전체 개수 조회
+    // $sql_count = "
+    //     SELECT COUNT(*) AS total
+    //     FROM weather w
+    //     JOIN weathercondition wc ON w.weather_condition_id = wc.condition_id
+    //     $where
+    // ";
     $sql_count = "
-        SELECT COUNT(*) AS total
-        FROM weather w
-        JOIN weathercondition wc ON w.weather_condition_id = wc.condition_id
-        $where
+    SELECT COUNT(*) AS total
+    FROM weather w
+    $where
     ";
     $stmt = $mysqli->prepare($sql_count);
     if (!empty($params)) {

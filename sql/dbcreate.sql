@@ -103,3 +103,15 @@ CREATE TABLE crime_record (
   KEY idx_crime_precinct (precinct_id),
   KEY idx_crime_status (status_id)
 );
+
+-- 성능 최적화용 추가 인덱스
+-- weather: 날짜 + 날씨 조건 필터 성능 개선
+ALTER TABLE weather
+    ADD INDEX idx_weather_date (record_date),
+    ADD INDEX idx_weather_date_cond (record_date, weather_condition_id);
+
+-- crime_record: 필터 + 날짜 조합 성능 개선
+ALTER TABLE crime_record
+    ADD INDEX idx_crime_cat_occurred (category_id, occurred_at),
+    ADD INDEX idx_crime_precinct_occurred (precinct_id, occurred_at),
+    ADD INDEX idx_crime_status_occurred (status_id, occurred_at);
