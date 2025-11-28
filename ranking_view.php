@@ -1,6 +1,14 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link rel="stylesheet" href="css/global.css" />
-<link rel="stylesheet" href="css/ranking.css">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>범죄 유형 순위 분석</title>
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/ranking.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
 <div class="layout">
 
     <!-- 왼쪽 네비게이션 바 -->
@@ -47,7 +55,7 @@
                                 <option value="all">전체</option>
                                 <?php foreach($filter_years as $yr): ?>
                                     <option value="<?= $yr ?>" <?= ($sel_year == $yr) ? 'selected' : '' ?>>
-                                        <?= $yr ?>년
+                                        <?= $yr ?>
                                     </option>
                                 <?php endforeach; ?>
                                 </select>
@@ -178,7 +186,8 @@
     </main>
 
 </div>
-
+</body>
+</html>
 <script>
     window.rankingData = {
         labels: <?php echo json_encode($chartLabels); ?>,
@@ -186,5 +195,4 @@
         tableRows: <?php echo json_encode($tableRows); ?>
     };
 </script>
-
 <script src="js/ranking.js"></script>
