@@ -13,7 +13,6 @@ $admin_id = $_SESSION['admin_id'] ?? null;
 $admin_id = $admin_id !== null ? (int)$admin_id : null;
 
 //1. 공통 옵션 로딩 
-
 // 범죄 카테고리
 $crime_categories = [];
 $res = $mysqli->query("SELECT category_id, category_name FROM crime_category ORDER BY category_name");
@@ -336,14 +335,6 @@ if ($data_type === 'crime') {
     }
 
     // 3-1. 전체 개수 조회
-    // $sql_count = "
-    //     SELECT COUNT(*) AS total
-    //     FROM crime_record c
-    //     JOIN crime_category cat ON c.category_id = cat.category_id
-    //     LEFT JOIN precinct p ON c.precinct_id = p.precinct_id
-    //     LEFT JOIN case_status s ON c.status_id = s.status_id
-    //     $where
-    // ";
     $sql_count = "
     SELECT COUNT(*) AS total
     FROM crime_record c
@@ -416,12 +407,6 @@ if ($data_type === 'crime') {
     }
 
     // 3-1. 전체 개수 조회
-    // $sql_count = "
-    //     SELECT COUNT(*) AS total
-    //     FROM weather w
-    //     JOIN weathercondition wc ON w.weather_condition_id = wc.condition_id
-    //     $where
-    // ";
     $sql_count = "
     SELECT COUNT(*) AS total
     FROM weather w
