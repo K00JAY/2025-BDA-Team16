@@ -13,8 +13,8 @@ $selected_month = $_GET['month'] ?? 'ALL';
 
 // 월 리스트 생성
 $months = [];
-$start = new DateTime("2004-01-01");
-$end   = new DateTime("2015-12-01");
+$start = new DateTime("2008-01-01");
+$end   = new DateTime("2014-12-01");
 
 while ($start <= $end) {
     $months[] = $start->format("Y-m");
@@ -22,8 +22,8 @@ while ($start <= $end) {
 }
 
 if ($selected_month === "ALL") {
-    $monthStart = "2004-01-01";
-    $monthEnd   = "2015-12-31";
+    $monthStart = "2008-01-01";
+    $monthEnd   = "2014-12-31";
 } else {
     $monthStart = $selected_month . "-01";
     $monthEnd   = (new DateTime($monthStart))->modify("last day of this month")->format("Y-m-d");
