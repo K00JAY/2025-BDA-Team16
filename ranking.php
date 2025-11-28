@@ -10,9 +10,9 @@ $tableRows = [];
 
 
 // 변수 기본값 초기화 
-$sel_year    = 'all'; // 기본값: 전체
-$sel_quarter = 'all'; // 기본값: 전체
-$sel_month   = 'all'; // 기본값: 전체
+$sel_year    = 'all'; 
+$sel_quarter = 'all'; 
+$sel_month   = 'all'; 
 $sel_limit   = 'all';
 $categories  = ['all'];
 
@@ -22,10 +22,9 @@ $use_quarter = 0;
 $use_month   = 0;
 
 // 필터용 범죄 유형 목록 가져오기
-$filter_categories = []; // DB에서 가져온 카테고리 이름을 담을 배열
-$category_info = []; // 설명을 담을 배열 추가
+$filter_categories = [];
+$category_info = []; 
 
-// description 컬럼 조회
 $cat_sql = "SELECT category_name, category_description FROM crime_category ORDER BY category_name ASC";
 
 if ($cat_result = $mysqli->query($cat_sql)) {
@@ -42,13 +41,11 @@ if ($cat_result = $mysqli->query($cat_sql)) {
     $cat_result->close();
 }
 
-// 연도 목록 가져오기 (DB에 존재하는 연도만 조회)
+// 연도 목록 가져오기
 $filter_years = [];
-// crime_record 테이블에서 연도를 가져와 정렬
 $year_sql = "SELECT DISTINCT year FROM crime_record ORDER BY year ASC";
 if ($year_result = $mysqli->query($year_sql)) {
     while ($row = $year_result->fetch_assoc()) {
-        // null 값이나 0이 있을 경우 제외
         if (!empty($row['year'])) {
             $filter_years[] = $row['year'];
         }
