@@ -1,4 +1,4 @@
--- CREATE DATABASE team16
+CREATE DATABASE IF NOT EXISTS team16;
 Use team16; 
 
 -- (1) weathercondition - 날씨 상태 분류
